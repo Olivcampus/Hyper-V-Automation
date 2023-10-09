@@ -38,11 +38,11 @@ param(
 
     [int64]$VMProcessorCount = 2,
 
-    [string]$VMSwitchName = 'SWITCH',
+    [string]$VMSwitchName = 'Default Switch',
 
     [string]$VMMacAddress,
 
-    [string]$Locale = 'en-US'
+    [string]$Locale = 'fr-FR'
 )
 
 $ErrorActionPreference = 'Stop'
