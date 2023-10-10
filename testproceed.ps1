@@ -22,7 +22,6 @@ Invoke-Command -Session $sess {
     choco install mariadb.install -y
     choco install mariadb
     choco install iis.administration -y
-    choco install php-manager -y
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServer
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-CommonHttpFeatures
@@ -55,6 +54,7 @@ Invoke-Command -Session $sess {
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-ASPNET45
     choco install urlrewrite -y
     choco install webdeploy -y
+    choco install php-manager -y
 }
 
 Remove-PSSession -Session $sess
