@@ -29,10 +29,8 @@ Invoke-Command -Session $sess {
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpErrors
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpRedirect
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-ApplicationDevelopment
-    
     Enable-WindowsOptionalFeature -online -FeatureName NetFx4Extended-ASPNET45
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-NetFxExtensibility45
-    
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-HealthAndDiagnostics
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpLogging
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-LoggingLibraries
@@ -54,7 +52,6 @@ Invoke-Command -Session $sess {
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-ISAPIExtensions
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-ISAPIFilter
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpCompressionStatic
-    
     Enable-WindowsOptionalFeature -Online -FeatureName IIS-ASPNET45
     choco install urlrewrite -y
     choco install webdeploy -y
