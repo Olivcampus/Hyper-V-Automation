@@ -1,11 +1,10 @@
-﻿$isoFile = 'C:\Users\olivier.himblot\Downloads\SERVER.iso'
+﻿$isoFile = 'C:\Users\olivier.himblot\Downloads\SERVER_EVAL_x64FRE_en-us.iso'
 $vmName = 'test'
 $pass = 'Denver26'
 
-.\New-VMFromWindowsImage.ps1 -SourcePath $isoFile -Edition 'Windows Server 2022 Standard Evaluation (expérience de bureau)' -VMName $vmName -VHDXSizeBytes 120GB -AdministratorPassword $pass  -Version 'Server2022Standard' -MemoryStartupBytes 2GB -VMProcessorCount 4
+.\New-VMFromWindowsImage.ps1 -SourcePath $isoFile -Edition 'Windows Server 2022 Standard Evaluation (Desktop Experience)' -VMName $vmName -VHDXSizeBytes 120GB -AdministratorPassword $pass  -Version 'Server2022Standard' -MemoryStartupBytes 4GB -VMProcessorCount 4
 
-$sess = .\New-VMSession.ps1 -VMName $vmName 
-
+$sess = .\New-VMSession.ps1 -VMName $vmName -AdministratorPassword $pass
 
 .\Enable-RemoteManagementViaSession.ps1 -Session $sess
 
@@ -20,6 +19,10 @@ Invoke-Command -Session $sess {
 
     # Install 7-zip
     choco install 7zip -y
+    choco install iis.administration
+    choco install mysql -y
+    
+    
 }
 
 Remove-PSSession -Session $sess

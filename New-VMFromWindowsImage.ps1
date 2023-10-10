@@ -42,7 +42,7 @@ param(
 
     [string]$VMMacAddress,
 
-    [string]$Locale = 'fr-FR'
+    [string]$Locale = 'us-US'
 )
 
 $ErrorActionPreference = 'Stop'

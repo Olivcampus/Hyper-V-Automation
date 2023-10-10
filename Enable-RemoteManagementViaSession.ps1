@@ -7,10 +7,11 @@ param(
 $ErrorActionPreference = 'Stop'
 
 Invoke-Command -Session $Session { 
-    # Enable remote administration
+    Write-Verbose 'Enable remote administration'
     Enable-PSRemoting -SkipNetworkProfileCheck -Force
     Enable-WSManCredSSP -Role server -Force
 
-    # Default rule is for 'Local Subnet' only. Change to 'Any'.
+    
+    Write-Verbose ' Default rule is for Local Subnet only. Change to Any .'
     Set-NetFirewallRule -DisplayName 'Windows Remote Management (HTTP-In)' -RemoteAddress Any
 } | Out-Null
