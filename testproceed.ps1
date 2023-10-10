@@ -3,24 +3,26 @@ $vmName = 'test'
 $pass = 'Denver26'
 
 .\New-VMFromWindowsImage.ps1 -SourcePath $isoFile -Edition 'Windows Server 2022 Standard Evaluation (Desktop Experience)' -VMName $vmName -VHDXSizeBytes 120GB -AdministratorPassword $pass  -Version 'Server2022Standard' -MemoryStartupBytes 4GB -VMProcessorCount 4
-
+Write-Verbose 'création vm sesion'
 $sess = .\New-VMSession.ps1 -VMName $vmName -AdministratorPassword $pass
-
+Write-Verbose 'activation remote management'
 .\Enable-RemoteManagementViaSession.ps1 -Session $sess
 
 # You can run any commands on VM with Invoke-Command:
 Invoke-Command -Session $sess { 
-    echo "Hello, world! (from $env:COMPUTERNAME)"
+    Write-Output "Hello, world! (from $env:COMPUTERNAME)"
 
     # Install chocolatey
     Set-ExecutionPolicy Bypass -Scope Process -Force
     [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
     # Install 7-zip
     choco install 7zip -y
-    choco install iis.administration
-    choco install mysql -y
+    choco install mariadb.install
+    choco install mariadb
+    choco install iis.administration -y
+
     
     
 }

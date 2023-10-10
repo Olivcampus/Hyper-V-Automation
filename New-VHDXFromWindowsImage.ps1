@@ -51,6 +51,7 @@ $unattendPath = .\New-WindowsUnattendFile.ps1 -AdministratorPassword $Administra
 
 # Create VHDX from ISO image
 Write-Verbose 'Creating VHDX from image...'
+
 . .\tools\Convert-WindowsImage.ps1
 Convert-WindowsImage -SourcePath $SourcePath -Edition $Edition -VHDPath $vhdxPath -SizeBytes $VHDXSizeBytes -VHDFormat VHDX -DiskLayout UEFI -UnattendPath $unattendPath
 
